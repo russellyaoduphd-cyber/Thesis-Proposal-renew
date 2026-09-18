@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\title{Thesis Proposal renew}
+\author{Qining Shen}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Acknowledgements and Current Progress}
+I am grateful to Benjamin Grimmer for his supervision of this work. We began collaborating on this project in January 2026, and the project is now nearing completion.
+\section{Introduction of the Problem}
+We consider the problem of $L$-smooth convex minimization of the form
+\begin{equation*}
+    f_\star = \min_{x\in\mathbb{R}^d} f(x)
+\end{equation*}
+in an arbitrary (potentially large) dimension $d$. Throughout, we assume this minimum is attained at some $x_\star$ and an initialization is provided with bounded distance
+$\|x_0-x_\star\|\leq D$.
+Given such an initialization, we study stochastic gradient descent (SGD) with a potentially nonconstant sequence of stepsizes. The stochastic gradient method (SGD) has iteration
+\begin{equation*}
+    x_{k+1}
+    =
+    x_k
+    -
+    \alpha_k\bigl(\nabla f(x_k)+\epsilon_k\bigr),
+    \tag{SGD}
+\end{equation*}
+Throughout, we assume that the gradient noise is independent, zero-mean, and has bounded variance.
+Here, a problem instance in dimension $d$ is defined by the initialization
+$x_0\in\mathbb{R}^d$, objective function
+$f\colon\mathbb{R}^d\rightarrow\mathbb{R}$, and sequence of distributions from which noise is drawn,
+$P_0,\dots,P_{N-1}$. We denote these collectively by
+\begin{equation*}
+    \mathtt{p} = (x_0,f,P_0,\dots,P_{N-1}).
+\end{equation*}
+We denote the set of problem instances by
+$\mathtt{P}(L,D,\sigma^2)$, constrained by $L$-smoothness, initial distance $D$, and noise variance $\sigma^2$.
+For a fixed vector of nonnegative stepsizes $h\in\mathbb{R}^N_+$, we measure the performance of SGD by the expected final objective gap,
+$\mathbb{E}_{\epsilon} f(x_N)-f_\star$.
+Notice the only source of randomness considered is the independent noise at each iteration, so this expectation is only over $\epsilon_i$.
+For any sufficiently high-dimensional problem, we provide an exact worst-case analysis of the expected suboptimality of stochastic gradient descent with any (potentially nonconstant) schedule of $N$ step sizes in $(0,1.5]^N$.
+Here, exact means that we provide a matching objective function and noise distributions where our guarantee is attained, so no further progress is possible.
+Using the Performance Estimation framework introduced below, we obtain the exact worst-case bound for this problem, thereby completely characterizing its worst-case performance.
+Then, by exploiting the convexity of this exact worst-case bound and solving the system of equations obtained by setting its gradient to zero, we characterize the unique optimal stepsize vector.
+\section{Method}
+The principal object of our study is the worst-case performance of SGD
+(for fixed stepsizes $h$) over this problem class
+(for fixed $L,D,\sigma^2$). This is known as its
+``Performance Estimation Problem'' (PEP).
+In other words, for a fixed stepsize schedule, the PEP asks for the largest
+expected final objective gap among all problem instances satisfying the
+assumptions of the problem class. Formally, we denote this by
+\begin{equation*}\label{eq:PEP}
+    \mathtt{PEP}(h,L,D,\sigma^2)
+    =
+    \max_{\mathtt{p}\in\mathtt{P}(L,D,\sigma^2)}
+    \left\{
+        \mathbb{E}_{\epsilon}\left[f(x_N)\right]-f_\star
+    \right\}.
+\end{equation*}
+Here we consider a fixed iteration budget $N$ and problem dimension $d$,
+which are suppressed in the above notation.\\
+PEPs were originally developed as a systematic framework for studying the
+worst-case performance of first-order optimization methods. For sufficiently
+structured deterministic problem classes, such as smooth convex minimization,
+the corresponding PEP can often be represented as a semidefinite program
+(SDP), provided the problem dimension is sufficiently large. This allows
+duality-based and computer-assisted techniques to be used to derive and
+certify worst-case guarantees.\\
+In our stochastic setting, we reformulate the relevant function values,
+gradients, iterates, and noise vectors using smooth convex interpolation
+conditions and their associated Gram matrix. This yields a semidefinite relaxation in which the worst-case expected objective gap can be analyzed through a finite collection of scalar and matrix constraints.\\
+We then construct an explicit feasible solution to the corresponding dual
+problem, which certifies an upper bound on the PEP.\\
+We then construct an explicit feasible solution to the corresponding dual
+problem, which certifies an upper bound on the worst-case performance.
+To establish exactness, we construct a matching objective function and noise
+distributions that attain the same bound. Together, the dual certificate and
+the matching worst-case construction yield the exact value of the PEP.
+\section{Significance}
+The choice of stepsizes is one of the central design decisions in stochastic gradient descent, as it governs the tradeoff between making rapid optimization progress and limiting the accumulation of stochastic noise. Standard convergence analyses typically provide upper bounds on the performance of SGD, but such bounds may be conservative and therefore do not necessarily identify the truly optimal stepsize schedule.
+By providing a matching upper and lower bound, our analysis characterizes the exact finite-horizon worst-case performance of SGD in the considered regime. Consequently, optimizing this bound over the stepsizes yields a genuinely minimax-optimal schedule, rather than merely a schedule that is optimal for a particular convergence analysis. This exact characterization also reveals qualitative structure in optimal stochastic stepsizes: in the regime where our minimax characterization applies, the optimal schedule is monotone decreasing, in contrast with the more complicated nonmonotone schedules that can arise in deterministic optimization. More broadly, this work demonstrates how performance estimation techniques can be used to obtain exact and constructive results for stochastic first-order methods.
+
+\end{document}
