@@ -5,6 +5,8 @@
 \usepackage{amsthm}
 \usepackage{amssymb}
 
+\usepackage{todonotes}
+
 \title{Exact Theory and Optimal Stepsizes for Stochastic Gradient Descent in Smooth Convex Minimization}
 \author{Qining Shen}
 \date{}
@@ -14,7 +16,13 @@
 
 \section{Acknowledgements and Current Progress}
 
-I am grateful to Benjamin Grimmer for his supervision of this work. We began collaborating on this project in January 2026, and the project is now nearing completion.
+\section{Acknowledgements and Current Progress}
+
+I am grateful to Benjamin Grimmer for his supervision of this work. We began collaborating on this project in January 2026. In the past nine months, we have made substantial progress on this project. Below, I present the main problem statement, the mathematical methodology we use to address it, and finally the significance of the problem. Our current results largely resolve the stated problem. The remaining work consists of resolving details in a few cases of our arguments and presenting the results in a polished form for my thesis.
+
+\todo[inline]{I would recommend replacing the above after ``\dots 2026'' with a period and then replacing the remainder with a few sentences giving explicit context like: ``In the past nine months, we have made substantial progress already on this project. Below I present the main problem statement, the mathematical methodology we are using to address it, and finally the problem's significance. Our current results mostly resolve the stated problem. The remaining work is resolving details for a few cases of our arguments and the major work of writing the results nicely for my thesis.''}
+
+
 \section{Introduction of the Problem}
 
 We consider the problem of $L$-smooth convex minimization of the form
@@ -24,6 +32,7 @@ We consider the problem of $L$-smooth convex minimization of the form
 in an arbitrary (potentially large) dimension $d$. Throughout, we assume this minimum is attained at some $x_\star$ and an initialization is provided with bounded distance
 $\|x_0-x_\star\|\leq D$.
 Given such an initialization, we study stochastic gradient descent (SGD) with a potentially nonconstant sequence of stepsizes. The stochastic gradient method (SGD) has iteration
+\todo[inline]{Here a stepsize is $\alpha_k$, but later it is a vector $h$. Be consistent.}
 \begin{equation*}
     x_{k+1}
     =
@@ -45,6 +54,8 @@ $\mathtt{P}(L,D,\sigma^2)$, constrained by $L$-smoothness, initial distance $D$,
 For a fixed vector of nonnegative stepsizes $h\in\mathbb{R}^N_+$, we measure the performance of SGD by the expected final objective gap,
 $\mathbb{E}_{\epsilon} f(x_N)-f_\star$.
 Notice the only source of randomness considered is the independent noise at each iteration, so this expectation is only over $\epsilon_i$.
+
+\todo[inline]{This was previously one really long paragraph. I recommend breaking it into two paragraphs here when you start saying what you provide.}
 For any sufficiently high-dimensional problem, we provide an exact worst-case analysis of the expected suboptimality of stochastic gradient descent with any (potentially nonconstant) schedule of $N$ step sizes in $(0,1.5]^N$.
 Here, exact means that we provide a matching objective function and noise distributions where our guarantee is attained, so no further progress is possible.
 Using the Performance Estimation framework introduced below, we obtain the exact worst-case bound for this problem, thereby completely characterizing its worst-case performance.
@@ -68,7 +79,7 @@ assumptions of the problem class. Formally, we denote this by
 \end{equation*}
 Here we consider a fixed iteration budget $N$ and problem dimension $d$.
 
-PEPs were originally developed as a systematic framework for studying the
+PEPs were originally developed\todo{Include a citation to Drori and Teboulle here} as a systematic framework for studying the
 worst-case performance of first-order optimization methods. For sufficiently
 structured deterministic problem classes, such as smooth convex minimization,
 the corresponding PEP can often be represented as a semidefinite program
@@ -76,7 +87,7 @@ the corresponding PEP can often be represented as a semidefinite program
 duality-based and computer-assisted techniques to be used to derive and
 certify worst-case guarantees.
 
-In our stochastic setting, we reformulate the relevant function values,
+In our stochastic setting, we reformulate\todo{Give credit to Rubben and cite them here.} the relevant function values,
 gradients, iterates, and noise vectors using smooth convex interpolation
 conditions and their associated Gram matrix. This yields a semidefinite relaxation in which the worst-case expected objective gap can be analyzed through a finite collection of scalar and matrix constraints.
 
