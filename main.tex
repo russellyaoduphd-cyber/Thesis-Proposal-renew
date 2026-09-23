@@ -32,13 +32,12 @@ We consider the problem of $L$-smooth convex minimization of the form
 in an arbitrary (potentially large) dimension $d$. Throughout, we assume this minimum is attained at some $x_\star$ and an initialization is provided with bounded distance
 $\|x_0-x_\star\|\leq D$.
 Given such an initialization, we study stochastic gradient descent (SGD) with a potentially nonconstant sequence of stepsizes. The stochastic gradient method (SGD) has iteration
-\todo[inline]{Here a stepsize is $\alpha_k$, but later it is a vector $h$. Be consistent.}
 \begin{equation*}
     x_{k+1}
     =
     x_k
     -
-    \alpha_k\bigl(\nabla f(x_k)+\epsilon_k\bigr),
+    h_k\bigl(\nabla f(x_k)+\epsilon_k\bigr),
     \tag{SGD}
 \end{equation*}
 Throughout, we assume that the gradient noise is independent, zero-mean, and has bounded variance.
