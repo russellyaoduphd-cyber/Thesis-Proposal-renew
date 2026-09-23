@@ -78,7 +78,8 @@ assumptions of the problem class. Formally, we denote this by
 \end{equation*}
 Here we consider a fixed iteration budget $N$ and problem dimension $d$.
 
-PEPs were originally developed\todo{Include a citation to Drori and Teboulle here} as a systematic framework for studying the
+PEPs were originally developed by Drori and Teboulle~\cite{drori2014performance} as a systematic framework for studying the
+% \todo{Include a citation to Drori and Teboulle here}
 worst-case performance of first-order optimization methods. For sufficiently
 structured deterministic problem classes, such as smooth convex minimization,
 the corresponding PEP can often be represented as a semidefinite program
@@ -86,7 +87,8 @@ the corresponding PEP can often be represented as a semidefinite program
 duality-based and computer-assisted techniques to be used to derive and
 certify worst-case guarantees.
 
-In our stochastic setting, we reformulate\todo{Give credit to Rubben and cite them here.} the relevant function values,
+In our stochastic setting, following the stochastic PEP framework of Rubbens, Colla, and Hendrickx~\cite{rubbens2025computer}, we reformulate the relevant function values,
+% \todo{Give credit to Rubben and cite them here.}
 gradients, iterates, and noise vectors using smooth convex interpolation
 conditions and their associated Gram matrix. This yields a semidefinite relaxation in which the worst-case expected objective gap can be analyzed through a finite collection of scalar and matrix constraints.
 
@@ -99,5 +101,9 @@ the matching worst-case construction yield the exact value of the PEP.
 
 The choice of stepsizes is one of the central design decisions in stochastic gradient descent, as it governs the tradeoff between making rapid optimization progress and limiting the accumulation of stochastic noise. Standard convergence analyses typically provide upper bounds on the performance of SGD, but such bounds may be conservative and therefore do not necessarily identify the truly optimal stepsize schedule.
 By providing a matching upper and lower bound, our analysis characterizes the exact finite-horizon worst-case performance of SGD in the considered regime. Consequently, optimizing this bound over the stepsizes yields a genuinely minimax-optimal schedule, rather than merely a schedule that is optimal for a particular convergence analysis. This exact characterization also reveals qualitative structure in optimal stochastic stepsizes: in the regime where our minimax characterization applies, the optimal schedule is monotone decreasing, in contrast with the more complicated nonmonotone schedules that can arise in deterministic optimization. More broadly, this work demonstrates how performance estimation techniques can be used to obtain exact and constructive results for stochastic first-order methods.
+
+
+\bibliographystyle{plain}
+\bibliography{references}
 
 \end{document}
